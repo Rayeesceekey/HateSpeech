@@ -1,0 +1,8 @@
+numpy>=1.18.5
+pandas>=1.1.4
+expertai-nlapi
+youtube_dl
+googletrans==4.0.0rc1
+torch
+moviepy
+git+https://github.com/openai/whisper.git
