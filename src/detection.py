@@ -9,6 +9,7 @@ import re
 import math
 import json
 import moviepy.editor as mp
+from pathlib import Path
 from expertai.nlapi.cloud.client import ExpertAiClient
 client = ExpertAiClient()
 
@@ -32,16 +33,20 @@ _MODELS = {
 ##***** Based on System config, better to chosse larger models for better accuracy
 
 def load_model():
-    global MODEL
-    device = "cuda" if torch.cuda.is_available() else "cpu"
-    with open("models/base.pt", "rb") as fp:
-        checkpoint = torch.load(fp, map_location=device)
+    my_file = Path("models/base.pt")
+    if my_file.exists():
+        global MODEL
+        device = "cuda" if torch.cuda.is_available() else "cpu"
+        with open("models/base.pt", "rb") as fp:
+            checkpoint = torch.load(fp, map_location=device)
 
-    dims = ModelDimensions(**checkpoint["dims"])
-    MODEL = Whisper(dims)
-    MODEL.load_state_dict(checkpoint["model_state_dict"])
+        dims = ModelDimensions(**checkpoint["dims"])
+        MODEL = Whisper(dims)
+        MODEL.load_state_dict(checkpoint["model_state_dict"])
 
-    MODEL = MODEL.to(device)
+        MODEL = MODEL.to(device)
+    else:
+        load_other_model("base")
 
 
 def load_other_model(model_name):

@@ -34,7 +34,7 @@ We can re-train the whisper model to get better accuracy for audio transcribing.
     ```
     sudo docker run --env-file env.list --name "container_name" -p 80:80 "image_name"
     ```
-- First time it will take some time as it will load/download the model
+- First time download the model from "https://openaipublic.azureedge.net/main/whisper/models/ed3a0b6b1c0edf879ad9b11b1af5a0e6ab5db9205f891f668f8b0e6c6326e34e/base.pt" and put it under model directory otherwise it will take some time to run the api
 
 - Then open any API client or you can open swagger UI by :- http://127.0.0.1/docs
     - Inference end point : **/hate_speech_detection/text**(Detection using text input)
