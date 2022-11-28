@@ -51,7 +51,7 @@ We can re-train the whisper model to get better accuracy for audio transcribing.
 
             {
                 "url": "",
-                "model_size": "yolov5l.pt"
+                "model_size": "base.pt"
             }
     - Inference end point : **/hate_speech_detection/from_video_path**(Detection using video path)
         
